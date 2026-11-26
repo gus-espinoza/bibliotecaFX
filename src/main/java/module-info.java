@@ -6,4 +6,6 @@ module com.ejemplo.bibliotecafx {
 
     opens com.ejemplo.bibliotecafx to javafx.fxml;
     exports com.ejemplo.bibliotecafx;
+    exports com.ejemplo.bibliotecafx.controller;
+    opens com.ejemplo.bibliotecafx.controller to javafx.fxml;
 }
