@@ -10,10 +10,10 @@ public class Libro {
     private Integer anio_publicacion;
     private Integer copias;
 
-    private Libro() {
+    public Libro() {
     }
 
-    private Libro(Integer id, String isbn, String titulo, String autor, String categoria, Integer anio_publicacion, Integer copias) {
+    public Libro(Integer id, String isbn, String titulo, String autor, String categoria, Integer anio_publicacion, Integer copias) {
         this.id = id;
         this.isbn = isbn;
         this.titulo = titulo;

@@ -1,8 +1,13 @@
 package com.ejemplo.bibliotecafx.controller;
 
+import com.ejemplo.bibliotecafx.dao.BdLibroDao;
+import com.ejemplo.bibliotecafx.dao.Libro;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 import java.util.Objects;
 
@@ -25,28 +30,43 @@ public class BibliotecaController {
     @FXML
     private TextField txtBuscar;
     @FXML
-    private TableView tableView;
+    private TableView <Libro>tableLibro;
     @FXML
-    private TableColumn colId;
+    private TableColumn <Object, Object>colId;
     @FXML
-    private TableColumn colIsbn;
+    private TableColumn <Object, Object>colIsbn;
     @FXML
-    private TableColumn colTitulo;
+    private TableColumn <Object, Object>colTitulo;
     @FXML
-    private TableColumn colAutor;
+    private TableColumn <Object, Object>colAutor;
     @FXML
-    private TableColumn colCategorias;
+    private TableColumn <Object, Object>colCategorias;
     @FXML
-    private TableColumn colAnioPublicacion;
+    private TableColumn <Object, Object>colAnioPublicacion;
     @FXML
-    private TableColumn colCopiasDisponibles;
+    private TableColumn <Object, Object>colCopiasDisponibles;
     @FXML
     private Label lblMensaje;
     @FXML
     private Label lblResumen;
 
+    private final BdLibroDao dao = new BdLibroDao();
 
+    @FXML
+    public void initialize(){
+        colId.setCellValueFactory(new PropertyValueFactory<>("ID"));
+        colIsbn.setCellValueFactory(new PropertyValueFactory<>("Isbn"));
+        colTitulo.setCellValueFactory(new PropertyValueFactory<>("Titulo"));
+        colAutor.setCellValueFactory(new PropertyValueFactory<>("Autor"));
+        colCategorias.setCellValueFactory(new PropertyValueFactory<>("Categoria"));
+        colAnioPublicacion.setCellValueFactory(new PropertyValueFactory<>("AnioPublicacion"));
+        colCopiasDisponibles.setCellValueFactory(new PropertyValueFactory<>("CopiasDisponibles"));
+        cargarProductos();
+    }
+    private void cargarProductos(){
+        tableLibro.getItems().setAll(dao.listarTodos());
 
+    }
     @FXML
     private void onBuscar() {
 

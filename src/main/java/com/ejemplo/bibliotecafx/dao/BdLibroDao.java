@@ -9,7 +9,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BdLibroDao implements ILIbroDao {
+
+public class BdLibroDao implements ILibroDao {
 
     public List<Libro> listarTodos() {
         List<Libro> libros = new ArrayList<>();
@@ -33,6 +34,7 @@ public class BdLibroDao implements ILIbroDao {
         }
         return libros;
     }
+
     @Override
     public void insertar(Libro libro) {
             String sql = "INSERT INTO libro( id,  isbn,  titulo,  autor,  categoria,  anio_publicacion,  copias) VALUES (?, ?, ?, ?, ?, ?, ?)";
