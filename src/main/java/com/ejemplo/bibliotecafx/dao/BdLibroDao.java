@@ -37,10 +37,9 @@ public class BdLibroDao implements ILibroDao {
 
     @Override
     public void insertar(Libro libro) {
-            String sql = "INSERT INTO libro( id,  isbn,  titulo,  autor,  categoria,  anio_publicacion,  copias) VALUES (?, ?, ?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO libro( isbn,  titulo,  autor,  categoria,  anio_publicacion,  copias) VALUES (?, ?, ?, ?, ?, ?, ?)";
             try (Connection con = ConexionDB.obtenerConexion();
                  PreparedStatement ps = con.prepareStatement(sql)) {
-                ps.setInt(1, libro.getId());
                 ps.setString(2, libro.getIsbn());
                 ps.setString(3, libro.getTitulo());
                 ps.setString(4, libro.getAutor());
@@ -54,27 +53,26 @@ public class BdLibroDao implements ILibroDao {
     }
     @Override
     public void actualizar(Libro libro) {
-            String sql = "UPDATE libro SET isbn = ?, titulo = ?, autor = ?, categoria = ?, anio_publicacion = ?, copias = ? WHERE id = ?";
+            String sql = "UPDATE libro SET isbn = ?, titulo = ?, autor = ?, categoria = ?, anio_publicacion = ?, copias = ? WHERE id_libro = ?";
             try (Connection con = ConexionDB.obtenerConexion();
                  PreparedStatement ps = con.prepareStatement(sql)) {
-                ps.setString(1, libro.getIsbn());
                 ps.setString(2, libro.getTitulo());
                 ps.setString(3, libro.getAutor());
                 ps.setString(4, libro.getCategoria());
                 ps.setInt(5, libro.getAnio_publicacion());
                 ps.setInt(6, libro.getCopias());
-                ps.setInt(7, libro.getId());
+                ps.setString(1, libro.getIsbn());
                 ps.executeUpdate();
             } catch (SQLException e) {
                 e.printStackTrace();
             }
     }
     @Override
-    public void eliminar(Integer id) {
-            String sql = "DELETE FROM libro WHERE id = ?";
+    public void eliminar(Integer isbn) {
+            String sql = "DELETE FROM libro WHERE isbn = ?";
             try (Connection con = ConexionDB.obtenerConexion();
                  PreparedStatement ps = con.prepareStatement(sql)) {
-                ps.setInt(1, id);
+                ps.setInt(1, isbn);
                 ps.executeUpdate();
             } catch (SQLException e) {
                 e.printStackTrace();

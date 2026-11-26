@@ -8,4 +8,5 @@ module com.ejemplo.bibliotecafx {
     exports com.ejemplo.bibliotecafx;
     exports com.ejemplo.bibliotecafx.controller;
     opens com.ejemplo.bibliotecafx.controller to javafx.fxml;
+    opens com.ejemplo.bibliotecafx.dao to javafx.base;
 }

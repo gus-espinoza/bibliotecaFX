@@ -12,9 +12,8 @@ import javafx.collections.ObservableList;
 import java.util.Objects;
 
 public class BibliotecaController {
-
     @FXML
-    private TextField txtCopiasDisponibles;
+    private TextField txtID;
     @FXML
     private TextField txtIsbn;
     @FXML
@@ -22,11 +21,11 @@ public class BibliotecaController {
     @FXML
     private TextField txtAutor;
     @FXML
-    private TextField txtID;
+    private ComboBox cmbCategorias;
     @FXML
     private TextField txtAnioPubliacion;
     @FXML
-    private ComboBox cmbCategorias;
+    private TextField txtCopiasDisponibles;
     @FXML
     private TextField txtBuscar;
     @FXML
@@ -52,15 +51,22 @@ public class BibliotecaController {
 
     private final BdLibroDao dao = new BdLibroDao();
 
+
+    ObservableList<Libro> listaLibros = FXCollections.observableArrayList();
     @FXML
     public void initialize(){
-        colId.setCellValueFactory(new PropertyValueFactory<>("ID"));
-        colIsbn.setCellValueFactory(new PropertyValueFactory<>("Isbn"));
-        colTitulo.setCellValueFactory(new PropertyValueFactory<>("Titulo"));
-        colAutor.setCellValueFactory(new PropertyValueFactory<>("Autor"));
-        colCategorias.setCellValueFactory(new PropertyValueFactory<>("Categoria"));
-        colAnioPublicacion.setCellValueFactory(new PropertyValueFactory<>("AnioPublicacion"));
-        colCopiasDisponibles.setCellValueFactory(new PropertyValueFactory<>("CopiasDisponibles"));
+        cmbCategorias.getItems().addAll("Programacion",
+                                                    "Ficcion",
+                                                    "Historia",
+                                                    "Ciencia",
+                                                    "Arte");
+        colId.setCellValueFactory(new PropertyValueFactory<>("id"));
+        colIsbn.setCellValueFactory(new PropertyValueFactory<>("isbn"));
+        colTitulo.setCellValueFactory(new PropertyValueFactory<>("titulo"));
+        colAutor.setCellValueFactory(new PropertyValueFactory<>("autor"));
+        colCategorias.setCellValueFactory(new PropertyValueFactory<>("categoria"));
+        colAnioPublicacion.setCellValueFactory(new PropertyValueFactory<>("anio_publicacion"));
+        colCopiasDisponibles.setCellValueFactory(new PropertyValueFactory<>("copias"));
         cargarProductos();
     }
     private void cargarProductos(){
@@ -78,21 +84,21 @@ public class BibliotecaController {
     }
 
     @FXML
-    private void onGuardar(ActionEvent actionEvent) {
+    private void onGuardar( ) {
 
     }
     @FXML
-    private void onActualizar(ActionEvent actionEvent) {
-
-    }
-
-    @FXML
-    private void onEliminar(ActionEvent actionEvent) {
+    private void onActualizar( ) {
 
     }
 
     @FXML
-    private void onLimpiar(ActionEvent actionEvent) {
+    private void onEliminar( ) {
+
+    }
+
+    @FXML
+    private void onLimpiar( ) {
 
     }
 }
